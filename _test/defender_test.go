@@ -24,10 +24,10 @@ func Test(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// To get the value of an output variable, run 'terraform output'
-	Id := terraform.Output(t, terraformOptions, "log_analytics_id")
+	Id := terraform.Output(t, terraformOptions, "defender_id")
 	Tags := terraform.OutputMap(t, terraformOptions, "tags")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "test-clouddrove-log-analytics", Tags["Name"])
+	assert.Equal(t, "test-clouddrove-defender", Tags["Name"])
 	assert.Contains(t, Id, "/subscriptions")
 }
