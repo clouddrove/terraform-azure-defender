@@ -23,6 +23,7 @@ module "storage" {
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
   storage_account_name = "stordtyre236"
+  account_replication_type = "LRS"
 
 
   ##   Storage Container
@@ -53,5 +54,5 @@ module "storage" {
 module "defender" {
   source      = "./../"
   enabled     = true
-  resource_id = module.storage.storage_account_id
+  resource_id = module.storage.default_storage_account_id
 }
