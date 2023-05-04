@@ -14,28 +14,16 @@ module "resource_group" {
 
 ##    Storage Account
 module "storage" {
-  source                    = "clouddrove/storage/azure"
-  resource_group_name       = module.resource_group.resource_group_name
-  location                  = module.resource_group.resource_group_location
-  storage_account_name      = "storagestartaca"
-  account_kind              = "StorageV2"
-  account_tier              = "Standard"
-  account_replication_type  = "GRS"
-  enable_https_traffic_only = true
-  is_hns_enabled            = true
-  sftp_enabled              = true
+  source               = "clouddrove/storage/azure"
+  version              = "1.0.7"
+  name                 = "app"
+  environment          = "test"
+  label_order          = ["name", "environment"]
+  default_enabled      = true
+  resource_group_name  = module.resource_group.resource_group_name
+  location             = module.resource_group.resource_group_location
+  storage_account_name = "stordtyre236"
 
-  network_rules = [
-    {
-      default_action = "Deny"
-      ip_rules       = ["0.0.0.0/0"]
-      bypass         = ["AzureServices"]
-    }
-  ]
-
-
-  ##   Storage Account Threat Protection
-  enable_advanced_threat_protection = true
 
   ##   Storage Container
   containers_list = [
@@ -53,15 +41,13 @@ module "storage" {
   ## Storage Queues
   queues = ["queue1"]
 
-  management_policy = [
-    {
-      prefix_match               = ["app-test/folder_path"]
-      tier_to_cool_after_days    = 0
-      tier_to_archive_after_days = 50
-      delete_after_days          = 100
-      snapshot_delete_after_days = 30
-    }
-  ]
+  management_policy_enable = true
+
+  #enable private endpoint
+  enable_private_endpoint = false
+
+  enable_diagnostic = false
+
 }
 
 module "defender" {
