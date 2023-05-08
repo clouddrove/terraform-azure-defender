@@ -15,7 +15,7 @@ module "resource_group" {
 ##    Storage Account
 module "storage" {
   source                   = "clouddrove/storage/azure"
-  version                  = "1.0.7"
+  version                  = "1.0.8"
   name                     = "app"
   environment              = "test"
   label_order              = ["name", "environment"]
