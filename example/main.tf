@@ -52,7 +52,7 @@ module "storage" {
 }
 
 module "defender" {
-  source      = "./../"
+  source      = "../"
   enabled     = true
   resource_id = module.storage.default_storage_account_id
 }
