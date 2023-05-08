@@ -52,7 +52,7 @@ module "storage" {
 }
 
 module "defender" {
-  source      = "./../"
+  source      = "git::https://github.com/clouddrove/terraform-azure-defender.git"
   enabled     = true
   resource_id = module.storage.default_storage_account_id
 }
