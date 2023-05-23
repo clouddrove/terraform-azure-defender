@@ -18,7 +18,6 @@ module "storage" {
   version                  = "1.0.8"
   name                     = "app"
   environment              = "test"
-  label_order              = ["name", "environment"]
   default_enabled          = true
   resource_group_name      = module.resource_group.resource_group_name
   location                 = module.resource_group.resource_group_location
@@ -53,6 +52,5 @@ module "storage" {
 
 module "defender" {
   source      = "../"
-  enabled     = true
   resource_id = module.storage.default_storage_account_id
 }
